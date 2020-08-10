@@ -1,0 +1,66 @@
+{
+  "login": [
+    {
+      "id": 1,
+      "emailId": "user@gmail.com",
+      "password": "user@123"
+    },
+    {
+      "id": 2,
+      "emailId": "admin@gmail.com",
+      "password": "admin@123"
+    },
+    {
+      "emailId": "admin",
+      "password": "122",
+      "id": 3
+    }
+  ],
+  "allProducts": [
+    {
+      "title": "Redmi-Note 7 Pro",
+      "imgurl": "https://www.powerplanetonline.com/cdnassets/funda_magnetic_ring_xiaomi_redmi_note_7_05_ad_l.jpg",
+      "cost": "Rs. 12000",
+      "inStock": "78",
+      "description": "4Gb/64Gb",
+      "category": "Electronic Gadgets ",
+      "id": 1
+    },
+    {
+      "title": "Tv",
+      "cost": "Rs. 15000",
+      "imgurl": "https://images-na.ssl-images-amazon.com/images/I/71f-d89oqvL._SL1500_.jpg",
+      "inStock": 55,
+      "description": "MI Andriod Tv",
+      "category": "Electronic Gadgets ",
+      "id": 2
+    },
+    {
+      "title": "Fastrack Bag",
+      "imgurl": "https://www.wishacupcake.com/wp-content/uploads/2016/06/fastrack-blue-messenger-bag.jpg",
+      "cost": "Rs. 200",
+      "inStock": "45",
+      "description": "School Bag",
+      "category": "Stationary Items",
+      "id": 3
+    },
+    {
+      "title": "Face Wash",
+      "cost": "Rs. 90",
+      "inStock": "39",
+      "description": "Natural any skin type",
+      "category": "Cosmetics",
+      "imgurl": "https://cdn.shopify.com/s/files/1/0066/8719/5183/products/face-wash_grande.jpg?v=1560176657",
+      "id": 4
+    },
+    {
+      "title": "Laptop-Acer",
+      "imgurl": "https://i.pinimg.com/originals/0b/5f/c8/0b5fc864c174f4bea7e93892e5eeb00a.jpg",
+      "cost": "Rs. 50000",
+      "inStock": "54",
+      "description": "8Gb/120Tb",
+      "category": "Electronic Gadgets ",
+      "id": 5
+    }
+  ]
+}
