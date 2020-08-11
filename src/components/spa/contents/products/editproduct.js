@@ -56,11 +56,13 @@ class EditProduct extends React.Component {
         this.setState({ imgurl: event.target.value })
     }
     onSave = (event) => {
+        console.log(parseInt(this.state.cost));
+        console.log();
         event.preventDefault();
         let prod = {
             "title": this.state.title,
-            "cost": this.state.cost,
-            "inStock": this.state.instock,
+            "cost": Number(this.state.cost),
+            "inStock": Number(this.state.instock),
             "description": this.state.description,
             "category": this.state.category,
             "imgurl":this.state.imgurl

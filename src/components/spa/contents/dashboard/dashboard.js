@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import { Chart } from 'react-google-charts';
-import ChartContainer from './chartcontainer';
-// import { Line } from 'react-chartjs-2';
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -12,66 +10,50 @@ class Dashboard extends React.Component {
             chartData: [],
             dataLoadingStatus: 'loading'
         }
-
+    }
+    componentWillMount() {
         this.getAllProducts();
-        // this.componentDidUpdate();
     }
     getAllProducts = () => {
         axios.get('http://localhost:3000/allProducts').then((response) => {
             console.log(response.data);
-            let tit = [];
-            let instk = [];
-            for (let obj of response.data) {
-                tit.push(obj.title);
-                instk.push(obj.inStock)
-            }
-            console.log(tit);
-            console.log(instk);
-            let temp = {
-                "title": tit,
-                "instock": instk
-            }
-            let chartData = [['Product Name', 'In Stock Rate']];
-            for (let i = 0; i < tit.length; i += 1) {
-                chartData.push([tit[i], instk[i]]);
-            }
-            console.log(chartData);
-            this.renderData(chartData);
-            this.setState({ dataLoadingStatus: 'ready', chartData: chartData });
             this.setState({ allproduct: response.data });
-        }, (error) => {
-            console.log(error.data);
         });
     }
-    renderData = (temp) => {
-        console.log(temp);
+    renChartData = () => {
+        console.log(this.state.allproduct);
+
+        let chD = [['Product Name', 'Stock Rate']];
+        console.log(chD);
+        let s = this.state.allproduct.map((prod) => {
+            return (chD.push([prod.title, prod.inStock]));
+        })
+        console.log(chD)
+        console.log(s);
+        return chD;
+    }
+    renderData = () => {
+        setTimeout(() => {
+            console.log(this.state);
+        }, 50);
+        console.log(this.renChartData());
         return (
             <Chart
                 width={'500px'}
                 height={'300px'}
-                chartType="PieChart"
+                chartType="BarChart"
                 loader={<div>Loading Chart</div>}
-                data={
-                    // temp
-                    [['Product Name', 'InStock'],
-                    ['Mobile', 78],
-                    ['Laptop', 54],
-                    ['Fash Wash', 39],
-                    ['TV', 55],
-                    ['Bag', 45],
-                    ]}
+                data={this.renChartData()}
                 options={{
-                    title: 'Product Stock Availability/day',
+                    title: 'Product Stock Availability',
                 }}
-                // rootProps={{ 'data-testid': '1' }}
-            />) 
+            />)
     }
     render() {
         return (
             <div>
                 <div><h2>Dashboard Page</h2></div>
                 {this.renderData()}
-                <ChartContainer />
             </div>
         );
     }

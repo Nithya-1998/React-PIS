@@ -1,8 +1,8 @@
 import React from 'react';
 import Product from './product';
 import axios from 'axios';
-import { Link, withRouter } from 'react-router-dom';
-import Dashboard from '../dashboard/dashboard';
+import { Link } from 'react-router-dom';
+
 class AllProduct extends React.Component {
     constructor(props) {
         super(props);
@@ -13,14 +13,19 @@ class AllProduct extends React.Component {
             searchValue: '',
             isTitleSearch: true,
             isCategorySearch: false,
-            toggleName: true
-            // deleteSuccess:true
+            toggleName: true,
         }
         this.getAllProducts();
     }
     getAllProducts = () => {
         axios.get('http://localhost:3000/allProducts').then((response) => {
             console.log(response.data);
+            let tit = [];
+            let instk = [];
+            for (let obj of response.data) {
+                tit.push(obj.title);
+                instk.push(obj.inStock);
+            }
             this.setState({ allProducts: response.data })
             console.log(this.state.allProducts)
         }, (error) => {
@@ -35,19 +40,12 @@ class AllProduct extends React.Component {
             state: { editid: id }
         })
     }
-
-    intializeState = () => {
-        setTimeout(() => {
-            this.setState({ deleteSuccess: false })
-        }, 2000)
-    }
     deleteProductWithId = (id) => {
         console.log("Deleted Successfully" + id);
         axios.delete('http://localhost:3000/allProducts/' + id).then((response) => {
             console.log(response.data);
             this.setState({ prodDetail: response.data });
             this.getAllProducts();
-            // this.intializeState();
         }, (error) => {
             console.log(error.data);
         });
@@ -105,42 +103,73 @@ class AllProduct extends React.Component {
     }
     sortName = (event) => {
         event.preventDefault();
-        console.log(event);
-        if (event.target.value) {
-            let sorttitle = this.state.allProducts.sort((a, b) => {
-                return (a.title - b.title);
-            })
-            console.log(sorttitle.sort((a, b) => { return (a.title - b.title); }));
-            this.setState({ allProducts: sorttitle })
-        }
     }
     sortPrice = (event) => {
         event.preventDefault();
-        let sortprice = this.state.allProducts.sort((a, b) => {
-            return (a.cost - b.cost);
-        })
-        console.log(sortprice.cost);
-        this.setState({ allProducts: sortprice })
     }
     handlePrice1 = (event) => {
         event.preventDefault();
         console.log(event.target.value);
-
+        console.log(this.state.allProducts)
+        if (!event.target.value) {
+            let price1 = this.state.allProducts.filter((prod) => {
+                return (prod.cost < 1000);
+            });
+            console.log(price1);
+            this.setState({ allProducts: price1 });
+        } else {
+            this.getAllProducts();
+        }
     }
     handlePrice2 = (event) => {
         event.preventDefault();
+        if (!event.target.value) {
+            let price2 = this.state.allProducts.filter((prod) => {
+                return (prod.cost >= 1000 && prod.cost <= 10000);
+            });
+            console.log(price2);
+            this.setState({ allProducts: price2 });
+        } else {
+            this.getAllProducts();
+        }
 
     }
     handlePrice3 = (event) => {
         event.preventDefault();
-
+        if (!event.target.value) {
+            let price3 = this.state.allProducts.filter((prod) => {
+                return (prod.cost <= 50000 && prod.cost >= 10000);
+            });
+            console.log(price3);
+            this.setState({ allProducts: price3 });
+        } else {
+            this.getAllProducts();
+        }
     }
     handlePrice4 = (event) => {
         event.preventDefault();
+        if (!event.target.value) {
+            let price4 = this.state.allProducts.filter((prod) => {
+                return (prod.cost <= 100000 && prod.cost >= 50000);
+            });
+            console.log(price4);
+            this.setState({ allProducts: price4 });
+        } else {
+            this.getAllProducts();
+        }
 
     }
     handlePrice5 = (event) => {
         event.preventDefault();
+        if (!event.target.value) {
+            let price5 = this.state.allProducts.filter((prod) => {
+                return (prod.cost >= 100000);
+            });
+            console.log(price5);
+            this.setState({ allProducts: price5 });
+        } else {
+            this.getAllProducts();
+        }
 
     }
     render() {
@@ -205,8 +234,8 @@ class AllProduct extends React.Component {
                                             <button onClick={this.handlePrice1} className="dropdown-item"> Below 1000</button>
                                             <button onClick={this.handlePrice2} className="dropdown-item"> 1000-10000</button>
                                             <button onClick={this.handlePrice3} className="dropdown-item">10000-50000</button>
-                                            <button onClick={this.handlePrice4} className="dropdown-item">100000-500000</button>
-                                            <button onClick={this.handlePrice5} className="dropdown-item"> Above 500000</button>
+                                            <button onClick={this.handlePrice4} className="dropdown-item">50000-100000</button>
+                                            <button onClick={this.handlePrice5} className="dropdown-item"> Above 100000</button>
                                         </div>
                                     </div>
                                 </div>
@@ -220,38 +249,12 @@ class AllProduct extends React.Component {
                 </nav>
                 <div className="container-fluid">
                     <div className="row">
-                        {/* <div className="col-sm-12 col-md-6 col-lg-3"> */}
                         {this.renderAllProducts()}
-                        {/* </div> */}
                     </div>
                 </div>
             </div>
-            // <div>
-            //     <div classNameName="pad-top">
-            //         <Link to={
-            //             {
-            //                 pathname: '/add',
-            //                 state: this.state
-            //             }
-            //         }>
-            //             Add Product</Link>
-            //         <div>
-            //             <input type="text" placeholder="Search for Products" onChange={this.handleSearch} />
-            //             <button>
-            //             <i classNameName="material-icons icon">search</i>
-            //             </button>
-            //             <input type="submit" value="Search" />
-            //             <button onClick={this.handleCategory}>Category</button>
-            //             <button onClick={this.handleTitle}>Title</button>
-            //             <h2>All Products</h2>
-            //             <div>
-            //                 {this.renderAllProducts()}
-            //             </div>
-            //         </div>
-            //     </div>
-            // </div>
         );
     }
 }
 
-export default withRouter(AllProduct);
+export default AllProduct;

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './login.css';
-// import { Link } from 'react-dom'
+
 import NavigationBar from '../../header/navbar';
 class Login extends React.Component {
     constructor(props) {
@@ -35,19 +35,17 @@ class Login extends React.Component {
             return (user.emailId === this.state.emailId)
         })
         console.log(olduser.length);
-        // console.log(this.state.oldUser);
         if (olduser.length === 0) {
             this.setState({ errorMsg: "Invalid UserId/Password", isExist: false });
-            // alert("User Not Exists...Please Signin your account");
-            // return false;
         } else {
             this.setState({ oldUser: olduser, isExist: true, buttonStatus: true });
             exist = true;
-            // return (<NavigationBar isLoggedIn={true}></NavigationBar>)
         }
         if (exist) {
             this.props.history.push('/products');
+
         }
+
     }
     handleEmailChange = (event) => {
         console.log(event.target)

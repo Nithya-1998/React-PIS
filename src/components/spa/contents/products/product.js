@@ -15,9 +15,27 @@ class Product extends React.Component {
             imgurl: this.props.imgurl,
             editId: 0,
             deleteId: 0,
-            prodDetail: []
+            prodDetail: [],
+            isStockout:false,
+            stockMsg:''
         }
+        this.getAllProducts();
         this.getProduct();
+    }
+    getAllProducts = () => {
+        axios.get('http://localhost:3000/allProducts').then((response) => {
+            console.log(response.data);
+            let tit = [];
+            let instk = [];
+            for (let obj of response.data) {
+                tit.push(obj.title);
+                instk.push(obj.inStock);
+            }
+            this.setState({ allProducts: response.data })
+            console.log(this.state.allProducts)
+        }, (error) => {
+            console.log(error.data);
+        })
     }
     getProduct = () => {
         console.log(this.state.id);
@@ -29,11 +47,6 @@ class Product extends React.Component {
             console.log(error.data);
         });
     }
-    // handleDashboard = (event) => {
-    //     console.log("Title-" + this.state.title)
-    //     console.log("Cost-" + this.state.cost)
-    //     event.preventDefault();
-    // }
     onDelete = (event) => {
         event.preventDefault();
         this.props.deleteId(this.state.id);
@@ -43,6 +56,33 @@ class Product extends React.Component {
         event.preventDefault();
         this.props.editId(this.state.id);
         console.log(this.props.editId(this.state.id))
+    }
+    stockMinus = (event) => {
+        event.preventDefault();
+        console.log((Number(this.state.instock) - 1));
+        let minus = (Number(this.state.instock) - 1);
+        if(minus <= 15){
+            this.setState({isStockout:true,stockMsg:'Running Out of Stock'})
+            setTimeout(() => {
+                this.setState({isStockout:false,stockMsg:''})
+            }, 2000);
+        }
+        this.setState({ instock: minus })
+        console.log(this.state.id)
+        console.log(minus)
+        let addedProd = {
+            "title": this.state.title,
+            "cost": Number(this.state.cost),
+            "inStock": minus,
+            "description": this.state.description,
+            "category": this.state.category,
+            "imgurl": this.state.imgurl
+        }
+        axios.put('http://localhost:3000/allProducts/' + this.state.id, addedProd).then(response => {
+            console.log(response);
+        }, error => {
+            console.error(error);
+        })
     }
 
     render() {
@@ -56,12 +96,10 @@ class Product extends React.Component {
                                 <div className="d-flex">
                                     <div className="flex-shrink-1">
                                         {this.state.title}
-                                        {/* {{ vehicle.name }} */}
                                     </div>
                                     <div className="flex-grow-1">
                                         <div className="text-danger font-weight-bold text-right">
-                                            {this.state.cost}
-                                            {/* &#8377;{{vehicle.rent | number}}/hr */}
+                                            Rs.  {this.state.cost}
                                         </div>
                                     </div>
                                 </div>
@@ -71,12 +109,10 @@ class Product extends React.Component {
                                     <div className="flex-shrink-1">
                                         <i className="material-icons text-danger">analytics</i>
                                         {this.state.instock}
-                                        {/* {{vehicle.model}} */}
                                     </div>
                                     <div className="flex-grow-1">
                                         <div className="text-dark font-weight-bold text-right">
                                             {this.state.description}
-                                            {/* {{vehicle.number}} */}
                                         </div>
                                     </div>
                                 </div>
@@ -88,19 +124,15 @@ class Product extends React.Component {
                                             <i className="material-icons text-danger">category</i>
                                             {this.state.category}
                                         </div>
+                                        <div className="flex-grow-1">
+                                            <div className="text-dark font-weight-bold text-right">
+                                                <button onClick={this.stockMinus} className="btn btn-info">
+                                                    s-
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                {/* <ul className="nav nav-tabs nav-fill nav-justified mb-3" role="tablist">
-                                <li className="nav-item">
-                                    <a className="nav-link bg-dark font-weight-bold text-light" data-toggle="pill"
-                                        role="tab" >Book</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link bg-light font-weight-bold text-danger"
-                                        data-toggle="pill" href="#" role="tab" >Cancel</a>
-                                </li>
-                            </ul> */}
-
                                 <ul className="nav nav-tabs nav-fill nav-justified mb-3" role="tablist">
                                     <li className="nav-item">
                                         <button className="btn btn-info mr-3 ml-3">
@@ -110,7 +142,7 @@ class Product extends React.Component {
                                                         pathname: '/edit',
                                                         state: this.state
                                                     }
-                                                } style={{ textDecoration: "none",color:'white' }}>
+                                                } style={{ textDecoration: "none", color: 'white' }}>
                                                 <i className="material-icons text-light font-weight-bold">create</i>
                                                  Edit</Link>
                                         </button>
@@ -122,48 +154,15 @@ class Product extends React.Component {
                                                 </a>
                                     </li>
                                 </ul>
+                                {this.state.isStockout &&
+                                    <div className="alert alert-danger mt-2  ml-4 mr-4" role="alert">
+                                        {this.state.stockMsg}
+                                    </div>}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            //     {/* <span>
-            // className="nav-link bg-dark font-weight-bold text-light" data-toggle="pill"
-            //                                 role="tab"
-            //      <form>
-            //          <label><b>Product Name : </b></label>
-            //          {this.state.title}
-            //          <br />
-            //          <br />
-            //          <label><b>Cost : </b></label>
-            //          {this.state.cost} 
-            //          <br />
-            //          <br />
-            //          <label><b>In Stock : </b></label>
-            //          {this.state.instock}
-            //          <br />
-            //          <br />
-            //          <label><b>Description : </b></label>
-            //          {this.state.description}
-            //          <br />
-            //          <br />
-            //          <label><b>Category : </b></label>
-            //          {this.state.category}
-            //          <br />
-            //          <br />
-            //          <button onClick={this.handleDashboard}>Dashboard</button>
-            //         <span style={{ float: 'left' }}><Link to={
-            //             {
-            //                 pathname: '/edit',
-            //                 state: this.state
-            //             }
-            //         }>
-            //             Edit</Link></span>
-            //         <button onClick={this.onDelete}>Delete</button>
-            //         <br />
-            //         <br />
-            //     </form>
-            // </span> */}
         );
     }
 }

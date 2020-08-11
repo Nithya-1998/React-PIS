@@ -14,53 +14,86 @@
       "emailId": "admin",
       "password": "122",
       "id": 3
+    },
+    {
+      "emailId": "N",
+      "password": "111`123",
+      "id": 4
+    },
+    {
+      "emailId": "Nithya",
+      "password": "qqq",
+      "id": 5
+    },
+    {
+      "emailId": "Nithya",
+      "password": "qqq",
+      "id": 6
     }
   ],
   "allProducts": [
     {
-      "title": "Redmi-Note 7 Pro",
-      "imgurl": "https://www.powerplanetonline.com/cdnassets/funda_magnetic_ring_xiaomi_redmi_note_7_05_ad_l.jpg",
-      "cost": "Rs. 12000",
-      "inStock": "78",
-      "description": "4Gb/64Gb",
+      "title": "Realme 6",
+      "cost": 14000,
+      "inStock": 20,
+      "description": "6Gb/64Gb",
       "category": "Electronic Gadgets ",
+      "imgurl": "https://i.gadgets360cdn.com/large/Realme_6v5_1583406422426.jpg",
       "id": 1
     },
     {
       "title": "Tv",
-      "cost": "Rs. 15000",
-      "imgurl": "https://images-na.ssl-images-amazon.com/images/I/71f-d89oqvL._SL1500_.jpg",
-      "inStock": 55,
+      "cost": 20000,
+      "inStock": 47,
       "description": "MI Andriod Tv",
       "category": "Electronic Gadgets ",
+      "imgurl": "https://images-na.ssl-images-amazon.com/images/I/71f-d89oqvL._SL1500_.jpg",
       "id": 2
     },
     {
       "title": "Fastrack Bag",
-      "imgurl": "https://www.wishacupcake.com/wp-content/uploads/2016/06/fastrack-blue-messenger-bag.jpg",
-      "cost": "Rs. 200",
-      "inStock": "45",
+      "cost": 200,
+      "inStock": 27,
       "description": "School Bag",
       "category": "Stationary Items",
+      "imgurl": "https://www.wishacupcake.com/wp-content/uploads/2016/06/fastrack-blue-messenger-bag.jpg",
       "id": 3
     },
     {
       "title": "Face Wash",
-      "cost": "Rs. 90",
-      "inStock": "39",
+      "cost": 90,
+      "inStock": 34,
       "description": "Natural any skin type",
       "category": "Cosmetics",
       "imgurl": "https://cdn.shopify.com/s/files/1/0066/8719/5183/products/face-wash_grande.jpg?v=1560176657",
       "id": 4
     },
     {
-      "title": "Laptop-Acer",
-      "imgurl": "https://i.pinimg.com/originals/0b/5f/c8/0b5fc864c174f4bea7e93892e5eeb00a.jpg",
-      "cost": "Rs. 50000",
-      "inStock": "54",
-      "description": "8Gb/120Tb",
-      "category": "Electronic Gadgets ",
+      "title": "Car",
+      "cost": 500000,
+      "inStock": 32,
+      "description": "20Km/hr",
+      "category": "Vehicle",
+      "imgurl": "https://m.kia.com/worldwide/front/download.do?saveFileDir=buzzStories/20190822_172555_f4b967d1-bb36-46c5-800d-5e7b87dafb8a.jpg",
       "id": 5
+    },
+    {
+      "title": "Car",
+      "imgurl": "https://m.kia.com/worldwide/front/download.do?saveFileDir=buzzStories/20190822_172555_f4b967d1-bb36-46c5-800d-5e7b87dafb8a.jpg",
+      "cost": 500000,
+      "inStock": 54,
+      "description": "20Km/hr",
+      "category": "Vehicle",
+      "id": 5
+    },
+    {
+      "title": "Redmi-Note 9 Pro",
+      "cost": 10000,
+      "inStock": 61,
+      "description": "4Gb/64Gb",
+      "category": "Electronic Gadgets ",
+      "imgurl": "https://www.powerplanetonline.com/cdnassets/funda_magnetic_ring_xiaomi_redmi_note_7_05_ad_l.jpg",
+      "id": 6
     }
   ]
 }

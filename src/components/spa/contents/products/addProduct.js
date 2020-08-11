@@ -17,8 +17,8 @@ class AddProduct extends React.Component {
         console.log("Product Added Successfully...");
         let addedProd = {
             "title": this.state.title,
-            "cost": this.state.cost,
-            "inStock": this.state.inStock,
+            "cost": Number(this.state.cost),
+            "inStock": Number(this.state.inStock),
             "description": this.state.description,
             "category": this.state.category,
             "imgurl":this.state.imgurl
@@ -102,34 +102,6 @@ class AddProduct extends React.Component {
                     </div>
                 </form>
             </div>
-            // <div>
-            //     <form>
-            //         <div className="form-width">
-            //             <h1>Add Product</h1>
-            //             <label><b>Product Name : </b></label>
-            //             <input type="text" id="productName" className="title" value={this.state.title} onChange={this.handleTitleChange}></input>
-            //             <br />
-            //             <br />
-            //             <label><b>Cost : </b></label>
-            //             <input type="text" id="productcost" className="cost" value={this.state.cost} onChange={this.handleCostChange}></input>
-            //             <br />
-            //             <br />
-            //             <label><b>In Stock : </b></label>
-            //             <input type="number" id="productstock" className="instock" value={this.state.inStock} onChange={this.handleStock}></input>
-            //             <br />
-            //             <br />
-            //             <label><b>Description : </b></label>
-            //             <input type="text" id="productdescription" className="productdescription" value={this.state.description} onChange={this.handleDescriptionChange}></input>
-            //             <br />
-            //             <br />
-            //             <label><b>Category : </b></label>
-            //             <input type="text" id="category" className="category" value={this.state.category} onChange={this.handleCategory}></input>
-            //             <br />
-            //             <br />
-            //             <button onClick={this.onSave}>Save</button>
-            //         </div>
-            //     </form>
-            // </div>
         );
     }
 }
