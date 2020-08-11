@@ -14,22 +14,8 @@
       "emailId": "admin",
       "password": "122",
       "id": 3
-    },
-    {
-      "emailId": "N",
-      "password": "111`123",
-      "id": 4
-    },
-    {
-      "emailId": "Nithya",
-      "password": "qqq",
-      "id": 5
-    },
-    {
-      "emailId": "Nithya",
-      "password": "qqq",
-      "id": 6
     }
+   
   ],
   "allProducts": [
     {
@@ -75,15 +61,6 @@
       "description": "20Km/hr",
       "category": "Vehicle",
       "imgurl": "https://m.kia.com/worldwide/front/download.do?saveFileDir=buzzStories/20190822_172555_f4b967d1-bb36-46c5-800d-5e7b87dafb8a.jpg",
-      "id": 5
-    },
-    {
-      "title": "Car",
-      "imgurl": "https://m.kia.com/worldwide/front/download.do?saveFileDir=buzzStories/20190822_172555_f4b967d1-bb36-46c5-800d-5e7b87dafb8a.jpg",
-      "cost": 500000,
-      "inStock": 54,
-      "description": "20Km/hr",
-      "category": "Vehicle",
       "id": 5
     },
     {
