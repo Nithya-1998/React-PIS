@@ -4,21 +4,12 @@ import axios from 'axios';
 class NavigationBar extends React.Component {
     constructor(props) {
         super(props);
+        console.log(this.props.loginUser);
         this.state = {
-            loginUser: [],
+            loginUser: this.props.loginUser,
             isLoggedIn: this.props.isLoggedIn
         }
-        // this.getAllUsers();
     }
-    // getAllUsers = () => {
-    //     axios.get('http://localhost:3000/login')
-    //         .then((response) => {
-    //             console.log(response.data);
-    //             this.setState({ loginUser: response.data });
-    //         }, (error) => {
-    //             console.log(error.data);
-    //         })
-    // }
 
     render() {
         return (
@@ -36,10 +27,10 @@ class NavigationBar extends React.Component {
                         <li className="nav-item" >
                             <a className="nav-link">
                                 <div className="btn-group">
-                                    {!this.state.isLoggedIn &&
-                                        <button type="button" className="btn btn-light font-weight-bold">
-                                            <Link to="/login" style={{ color: 'black', textDecoration: 'none' }}>Login</Link>
-                                        </button>}
+                                    <button type="button" className="btn btn-light font-weight-bold">
+                                        <Link to="/login" style={{ color: 'black', textDecoration: 'none' }}>
+                                            Login</Link>
+                                    </button>
                                 </div>
                             </a>
                         </li>
@@ -52,13 +43,13 @@ class NavigationBar extends React.Component {
                                 </div>
                             </a>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item" >
                             <a className="nav-link">
                                 <div className="btn-group">
-                                    {this.state.isLoggedIn &&
-                                        <button type="button" className="btn btn-light font-weight-bold">
-                                            <Link to="/login" style={{ color: 'black', textDecoration: 'none' }}>Logout</Link>
-                                        </button>}
+                                    <button type="button" className="btn btn-light">
+                                        <i className="material-icons">account_box</i>
+                                        <span className="font-weight-bold">{this.props.loginUser}</span>
+                                    </button>
                                 </div>
                             </a>
                         </li>
@@ -71,44 +62,6 @@ class NavigationBar extends React.Component {
                                 </div>
                             </a>
                         </li>
-                        {/* <li className="nav-item" >
-                            <a className="nav-link">
-                                <div className="btn-group">
-                                    <button type="button" className="btn btn-danger">
-                                        <i className="material-icons">account_box</i>
-                                        <span className="font-weight-bold">{{}}</span>
-                                    </button>
-                                </div>
-                            </a>
-                        </li> */}
-                        {/*
-                        <li className="nav-item">
-                            <a className="nav-link">
-                                <div className="btn-group">
-                                    <button type="button" className="btn btn-danger font-weight-bold">
-                                        Vehicles
-                        </button>
-                                </div>
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link">
-                                <div className="btn-group">
-                                    <button type="button" className="btn btn-danger font-weight-bold">
-                                        My Booking
-                            </button>
-                                </div>
-                            </a>
-                        </li>
-                        <li className="nav-item" >
-                            <a className="nav-link">
-                                <div className="btn-group">
-                                    <button type="button" className="btn btn-danger font-weight-bold">
-                                        Requests
-                        </button>
-                                </div>
-                            </a>
-                        </li> */}
                     </ul>
                 </div>
             </nav>

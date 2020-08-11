@@ -39,7 +39,9 @@ class Signup extends React.Component {
         this.setState({ confirmPassword: event.target.value })
     }
     userExist() {
+        let status=false
         if (this.state.password === this.state.confirmPassword) {
+            status=true
             this.setState({ buttonStatus: true })
         }
         var oldUser = this.state.userCheck.filter((user) => {
@@ -51,7 +53,8 @@ class Signup extends React.Component {
             "password": this.state.password
         }
         console.log(newUser);
-        if (oldUser.length === 0 && this.state.buttonStatus) {
+        console.log(status)
+        if (oldUser.length === 0) {
             this.setState({ checkStatus: false });
             axios.post('http://localhost:3000/login', newUser).then(
                 (response) => {
@@ -81,11 +84,18 @@ class Signup extends React.Component {
         }
         this.userExist();
     }
+    intervaltimestatus=()=>{
+        setTimeout(() => {
+            this.setState({ pwdCheck: false })
+        }, 3000)
+    }
     handleSubmit = (event) => {
         event.preventDefault();
         this.checkStatus();
         console.log(this.state.errorMsg + this.state.checkStatus);
         this.intervaltime();
+        this.intervaltimestatus();
+        this.checkStatus();
     }
 
     render() {
@@ -98,11 +108,11 @@ class Signup extends React.Component {
                                 <div className="card mt-4 mb-5">
                                     <div className="card-title h1 ml-4 mt-4">SignUp</div>
                                     {this.state.pwdCheck &&
-                                        <div class="alert alert-danger mt-2  ml-4 mr-4" role="alert">
+                                        <div className="alert alert-danger mt-2  ml-4 mr-4" role="alert">
                                             {this.state.pwdMsg}
                                         </div>}
                                     {this.state.checkStatus &&
-                                        <div class="alert alert-danger mt-2  ml-4 mr-4" role="alert">
+                                        <div className="alert alert-danger mt-2  ml-4 mr-4" role="alert">
                                             {this.state.errorMsg}
                                         </div>}
                                     <div className="mt-2 ml-4 mr-4">
