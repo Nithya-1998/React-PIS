@@ -1,5 +1,6 @@
 import React from 'react';
-import AllProduct from '../products/products';
+// import AllProduct from '../products/products';
+import ProductTable from '../products/prodTable';
 class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -8,7 +9,8 @@ class Home extends React.Component {
     render() { 
         return ( 
             <div>
-                <AllProduct />
+                {/* <AllProduct /> */}
+                <ProductTable />
             </div>
          );
     }

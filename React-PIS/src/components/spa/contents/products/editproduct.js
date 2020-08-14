@@ -10,9 +10,11 @@ class EditProduct extends React.Component {
             editProductDetail: [],
             id: this.props.location.state.id,
             title: this.props.location.state.title,
-            imgurl:this.props.location.state.imgurl,
+            imgurl: this.props.location.state.imgurl,
             cost: this.props.location.state.cost,
             instock: this.props.location.state.instock,
+            outOfstock: this.props.location.state.outOfstock,
+            quantity: this.props.location.state.quantity,
             description: this.props.location.state.description,
             category: this.props.location.state.category,
             product: []
@@ -39,7 +41,7 @@ class EditProduct extends React.Component {
         event.preventDefault();
         this.setState({ cost: event.target.value })
     }
-    handleStock = (event) => {
+    handleInStock = (event) => {
         event.preventDefault();
         this.setState({ instock: event.target.value })
     }
@@ -55,6 +57,14 @@ class EditProduct extends React.Component {
         event.preventDefault();
         this.setState({ imgurl: event.target.value })
     }
+    handleOutofstock = (event) => {
+        event.preventDefault();
+        this.setState({ outOfstock: event.target.value })
+    }
+    handleQuantity = (event) => {
+        event.preventDefault();
+        this.setState({ quantity: event.target.value })
+    }
     onSave = (event) => {
         console.log(parseInt(this.state.cost));
         console.log();
@@ -65,7 +75,9 @@ class EditProduct extends React.Component {
             "inStock": Number(this.state.instock),
             "description": this.state.description,
             "category": this.state.category,
-            "imgurl":this.state.imgurl
+            "imgurl": this.state.imgurl,
+            "outOfstock": this.state.outOfstock,
+            "quantity": this.state.quantity
         };
         axios.put('http://localhost:3000/allProducts/' + this.state.id, prod).then(
             (response) => {
@@ -102,7 +114,15 @@ class EditProduct extends React.Component {
                                         </div>
                                         <div className="col-sm-12 col-md-12 col-lg-12">
                                             <label><b>In Stock : </b></label>
-                                            <input type="number" id="productcost" className="instock" value={this.state.instock} onChange={this.handleStock}></input>
+                                            <input type="number" id="instock" className="instock" value={this.state.instock} onChange={this.handleInStock}></input>
+                                        </div>
+                                        <div className="col-sm-12 col-md-12 col-lg-12">
+                                            <label><b>Out of Stock : </b></label>
+                                            <input type="number" id="outOfstock" className="outOfstock" value={this.state.outOfstock} onChange={this.handleOutofstock}></input>
+                                        </div>
+                                        <div className="col-sm-12 col-md-12 col-lg-12">
+                                            <label><b>Quantity : </b></label>
+                                            <input type="number" id="quantity" className="quantity" value={this.state.quantity} onChange={this.handleQuantity}></input>
                                         </div>
                                         <div className="col-sm-12 col-md-12 col-lg-12">
                                             <label><b>Description : </b></label>
