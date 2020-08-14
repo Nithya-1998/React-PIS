@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import './login.css';
+import { Link } from 'react-router-dom';
 
-import NavigationBar from '../../header/navbar';
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -43,7 +43,6 @@ class Login extends React.Component {
         }
         if (exist) {
             this.props.history.push('/products');
-
         }
 
     }
@@ -101,6 +100,7 @@ class Login extends React.Component {
                                                     Login
                                                     </button>
                                             </div>
+                                            <span className='float-right mt-4'><Link to='/Signup'>NewUser?SignUp</Link></span>
                                         </div>
                                     </div>
                                 </div>
